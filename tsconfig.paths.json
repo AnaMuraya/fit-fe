@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@components": ["./src/components/index.ts"],
+        "@config": ["./src/config/index.ts"],
+        "@context": ["./src/context/index.tsx"],
+        "@elements": ["./src/elements/index.ts"],
+        "@pages": ["./src/pages/index.ts"],
+        "@types": ["./src/types/index.ts"],
+        "@sass-resources": ["./src/sass/resources.scss"]
+      }
+    }
+  }
+  
