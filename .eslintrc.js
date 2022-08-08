@@ -1,8 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
-    node: true
+    es2021: true
+    // node: true
   },
   extends: [
     'eslint:recommended',
@@ -24,11 +24,12 @@ module.exports = {
     camelcase: 'error',
     'spaced-comment': 'error',
     quotes: ['error', 'single'],
-    'no-duplicate-imports': 'error'
+    'no-duplicate-imports': 'error',
+    semi: ['error', 'never']
   },
   settings: {
     'import/resolver': {
       typescript: {}
     }
   }
-};
+}
