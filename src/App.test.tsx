@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import {Home} from './App'
+import { Home } from './App'
 
 // eslint-disable-next-line no-undef
 test('renders learn react link', () => {
