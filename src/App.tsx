@@ -8,12 +8,14 @@ export const Home = () => {
 
 function App() {
   return (
-    <div data-testid="appWrapper" className="App">
-      Workout
+    <>
+      <div data-testid="appWrapper" className="App">
+        Workout
+      </div>
       <Routes>
         <Route path="/home" element={<Home />} />
       </Routes>
-    </div>
+    </>
   )
 }
 
