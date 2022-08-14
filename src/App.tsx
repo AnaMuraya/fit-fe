@@ -8,14 +8,6 @@ export const Home = () => {
   return <div data-testid="homeWrapper">Home</div>
 }
 
-export const NotFound = () => {
-  return (
-    <div data-testid="wrapper">
-      404 <p>NotFound</p>
-    </div>
-  )
-}
-
 function App() {
   return (
     <div data-testid="appWrapper" className="App">
