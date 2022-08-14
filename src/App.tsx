@@ -1,9 +1,19 @@
 import { Routes, Route } from 'react-router-dom'
 
+import { Weather, Dashboard, Auth } from './pages'
+
 import './App.css'
 
 export const Home = () => {
   return <div data-testid="homeWrapper">Home</div>
+}
+
+export const NotFound = () => {
+  return (
+    <div data-testid="wrapper">
+      404 <p>NotFound</p>
+    </div>
+  )
 }
 
 function App() {
@@ -12,6 +22,10 @@ function App() {
       Workout
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   )
