@@ -1,3 +1,4 @@
+// Passes the JWT to authorized resource
 const authHeader = () => {
   const userStr = localStorage.getItem('user')
   let user = null
@@ -8,4 +9,4 @@ const authHeader = () => {
     return { 'x-access-token': null }
   }
 }
-export default authHeader()
+export default authHeader
