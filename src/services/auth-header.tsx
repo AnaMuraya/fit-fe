@@ -3,9 +3,9 @@ const authHeader = () => {
   let user = null
   if (userStr) user = JSON.parse(userStr)
   if (user && user.accessToken) {
-    return { Authorization: 'Bearer ' + user.accessToken }
+    return { 'x-access-token': user.accessToken }
   } else {
-    return { Authorization: '' }
+    return { 'x-access-token': null }
   }
 }
 export default authHeader()
