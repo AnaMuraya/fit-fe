@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Weather, Dashboard, Auth } from './pages'
+import { Weather, Dashboard, Login, Register } from './pages'
 
-import './App.css'
+// import './App.css'
 
 export const Home = () => {
   return <div data-testid="homeWrapper">Home</div>
@@ -18,16 +18,18 @@ export const NotFound = () => {
 
 function App() {
   return (
-    <div data-testid="appWrapper" className="App">
-      Workout
+    // <div data-testid="appWrapper" className="App">
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/weather" element={<Weather />} />
-        <Route path="/auth" element={<Auth />} />
+        {/* <Route path="/api/auth"> */}
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+        {/* </Route> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+    // </div>
   )
 }
 

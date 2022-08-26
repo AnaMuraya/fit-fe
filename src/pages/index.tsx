@@ -1,5 +1,6 @@
 import Weather from './weather/Weather'
 import Dashboard from './dashboard/Dashboard'
-import Auth from './auth/Auth'
+import Login from './auth/Login'
+import Register from './auth/Register'
 
-export { Weather, Dashboard, Auth }
+export { Weather, Dashboard, Login, Register }
