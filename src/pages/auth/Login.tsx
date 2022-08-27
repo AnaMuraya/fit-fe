@@ -15,7 +15,6 @@ const Login = () => {
   return (
     <div className={styles.loginWrapper}>
       <form onSubmit={formik.handleSubmit} className={styles.loginForm}>
-        <p>Login</p>
         <div className={styles.inputs}>
           <label htmlFor="name">Username</label>
           <input
@@ -40,6 +39,9 @@ const Login = () => {
             value={formik.values.name}
             className={styles.formInput}
           />
+        </div>
+        <div className={styles.submitButton}>
+          <button>Login</button>
         </div>
       </form>
     </div>
