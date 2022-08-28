@@ -18,17 +18,14 @@ export const NotFound = () => {
 
 function App() {
   return (
-    // <div data-testid="appWrapper" className="App">
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/weather" element={<Weather />} />
-        {/* <Route path="/api/auth"> */}
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        {/* </Route> */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+    <Routes>
+      <Route path="/home" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/weather" element={<Weather />} />
+      <Route path="/api/auth/signin" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
     // </div>
   )
 }
