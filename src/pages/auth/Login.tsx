@@ -5,64 +5,80 @@ import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 const Login = () => {
+  // const [name, setName] = useState<string>('')
+  // const [pass, setPass] = useState<string>('')
+  const [message, setMessage] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const navigate = useNavigate()
+
   const formik = {
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .required('Username is required')
-        .min(3, 'Username must be at least 3 characters')
-        .max(20, 'Username must not exceed 20 characters'),
-      password: Yup.string()
-        .required('Password is required')
-        .min(6, 'Password must be at least 3 characters')
-        .max(20, 'Password must not exceed 20 characters')
-    }),
-    initialValues: {
-      name: '',
-      password: ''
+    validationSchema() {
+      return Yup.object().shape({
+        username: Yup.string().required('This field is required'),
+        password: Yup.string().required('This field is required')
+      })
     },
-    onSubmit: (values: { name: string; password: string }) => {
-      alert(`Name: ${values.name}, Password: ${values.password}`)
-      const { name, password } = values
+    handleLogin: (values: { username: string; password: string }) => {
+      const { username, password } = values
+      setLoading(true)
+      setMessage('')
 
-      AuthService.login(name, password).then(
-        () => {
-          navigate('/profile')
+      AuthService.login(username, password)
+        .then(() => {
+          navigate('/home')
           window.location.reload()
-        }
-        // (err) => {
-        //   const errorMessage =
-        //     (err.response && err.response.data && err.response.data.message) ||
-        //     err.message ||
-        //     err.toString()
-
-        // }
-      )
+        })
+        .catch((err) => {
+          const errorMessage =
+            (err.response && err.response.data && err.response.data.message) ||
+            err.message ||
+            err.toString()
+          setLoading(false)
+          setMessage(errorMessage)
+          // console.log(errorMessage)
+          // navigate('/home')
+        })
+    },
+    initialValues: {
+      username: '',
+      password: ''
     }
   }
+
   return (
     <div className={styles.loginWrapper}>
       <Formik
         initialValues={formik.initialValues}
         validationSchema={formik.validationSchema}
-        onSubmit={formik.onSubmit}
+        onSubmit={formik.handleLogin}
       >
         <Form>
           <div className={styles.loginForm}>
             <div className={styles.inputs}>
-              <label htmlFor="name">Username</label>
-              <Field type="text" name="name" className={styles.formInput} />
-              <ErrorMessage name="name" className={styles.formInput} />
+              <label htmlFor="username">Username</label>
+              <Field name="username" type="text" className={styles.formInput} />
+              <ErrorMessage name="username" component="div" />
             </div>
             <div className={styles.inputs}>
-              <label htmlFor="pass">Password</label>
-              <Field type="password" name="pass" className={styles.formInput} />
-              <ErrorMessage name="password" className={styles.formInput} />
+              <label htmlFor="password">Password</label>
+              <Field
+                name="password"
+                type="password"
+                className={styles.formInput}
+              />
+              <ErrorMessage name="password" component="div" />
             </div>
             <div className={styles.submitButton}>
-              <button>Login</button>
+              <button type="submit" disabled={loading}>
+                Login
+              </button>
+            </div>
+            <div>
+              {loading && <span>Loading please wait</span>}
+              {message && <span>{message}</span>}
             </div>
           </div>
         </Form>
