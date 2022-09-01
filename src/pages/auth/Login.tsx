@@ -8,8 +8,6 @@ import styles from './style.module.scss'
 import { useState } from 'react'
 
 const Login = () => {
-  // const [name, setName] = useState<string>('')
-  // const [pass, setPass] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   // const navigate = useNavigate()
