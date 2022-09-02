@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL = 'https://localhost:3000/api/auth/'
+const API_URL = 'http://localhost:8080/api/auth/'
 
 // POST {username, password} & save JWT to Local Storage
 const login = (username: string, password: string) => {

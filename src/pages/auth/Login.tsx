@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   // const [pass, setPass] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const formik = {
     validationSchema() {
@@ -28,7 +28,9 @@ const Login = () => {
 
       AuthService.login(username, password)
         .then(() => {
-          navigate('/home')
+          // navigate('/home')
+          // alert(`Name: ${username}, Pass: ${password}`)
+          alert('Success')
           window.location.reload()
         })
         .catch((err) => {
@@ -38,8 +40,7 @@ const Login = () => {
             err.toString()
           setLoading(false)
           setMessage(errorMessage)
-          // console.log(errorMessage)
-          // navigate('/home')
+          console.log(errorMessage)
         })
     },
     initialValues: {

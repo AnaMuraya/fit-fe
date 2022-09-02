@@ -19,11 +19,11 @@ export const NotFound = () => {
 function App() {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="api/auth/home" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/weather" element={<Weather />} />
       <Route path="/api/auth/signin" element={<Login />} />
-      <Route path="/signup" element={<Register />} />
+      <Route path="api/auth/signup" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
     // </div>
