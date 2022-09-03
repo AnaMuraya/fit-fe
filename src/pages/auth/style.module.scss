@@ -1,44 +1,53 @@
-.loginWrapper {
+.wrapper {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: large;
 
-  .loginForm {
-    background: rgb(217, 217, 217);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  .authWrapper {
+    width: 50%;
 
-    .inputs {
+    .authForm {
+      background: rgb(217, 217, 217);
+      text-align: center;
       display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
-      width: 100%;
-      margin-bottom: 30px;
 
-      label {
-        text-align: left;
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 30px;
+
+        label {
+          text-align: left;
+          font-size: 20px;
+        }
+
+        .formInput {
+          border-bottom: 1px solid rgb(130, 123, 123);
+          width: 100%;
+          height: 50px;
+          font-size: 20px;
+        }
       }
 
-      .formInput {
-        border-bottom: 1px solid rgb(130, 123, 123);
+      .submitButton {
         width: 100%;
         height: 50px;
-      }
-    }
+        display: grid;
+        justify-content: center;
 
-    .submitButton {
-      width: 100%;
-      height: 50px;
-      display: grid;
-      justify-content: center;
-
-      button{
-        background: #000;
-        color: white;
-        width: 150px;
+        button {
+          background: #000;
+          color: white;
+          width: 150px;
+          font-size: 18px;
+        }
       }
     }
   }

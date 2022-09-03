@@ -5,20 +5,21 @@ import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const [message, setMessage] = useState<string>('')
   const [successful, setSuccessful] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const navigate = useNavigate()
+
   const formik = {
     validationSchema() {
       return Yup.object().shape({
         username: Yup.string()
-          .test(
-            'length',
-            'Username must be between 3 and 20 characters',
-            (val?: any) =>
-              val && val.toString().length >= 3 && val.toString() <= 29
-          )
+          .min(6, 'Username must be at least 6 characters')
+          .max(20, 'Username must not exceed 20 characters')
           .required('Username is required'),
         email: Yup.string()
           .email('This is not a valid email')
@@ -27,6 +28,7 @@ const Register = () => {
           .test(
             'length',
             'The password length must be between 6 and 40 characters',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (val: any) =>
               val && val.toString().length >= 6 && val.toString().length <= 40
           )
@@ -56,61 +58,91 @@ const Register = () => {
 
       setMessage('')
       setSuccessful(false)
+      setLoading(true)
+
       AuthService.register(username, email, password)
         .then((response) => {
           setMessage(response.data.message)
           setSuccessful(true)
+          navigate('/signin')
         })
         .catch((err) => {
           const errorMessage =
             (err.response && err.response.data && err.response.data.message) ||
             err.message ||
             err.toString()
+          setLoading(true)
           setMessage(errorMessage)
           setSuccessful(false)
         })
     }
   }
   return (
-    <div className={styles.registerWrapper}>
-      <Formik
-        validationSchema={formik.validationSchema}
-        initialValues={formik.initialValues}
-        onSubmit={formik.handleRegister}
-      >
-        <Form>
-          {!successful && (
-            <div>
-              <div>
-                <label htmlFor="username">Username</label>
-                <Field name="username" type="text" />
-                <ErrorMessage name="username" component="div" />
+    <div className={styles.wrapper}>
+      <div className={styles.authWrapper}>
+        <Formik
+          validationSchema={formik.validationSchema}
+          initialValues={formik.initialValues}
+          onSubmit={formik.handleRegister}
+        >
+          <Form>
+            {!successful && (
+              <div className={styles.authForm}>
+                <div className={styles.inputs}>
+                  <label htmlFor="username">Username</label>
+                  <Field
+                    name="username"
+                    type="text"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="username" component="div" />
+                </div>
+                <div className={styles.inputs}>
+                  <label htmlFor="email">Email</label>
+                  <Field
+                    name="email"
+                    type="email"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="email" component="div" />
+                </div>
+                <div className={styles.inputs}>
+                  <label htmlFor="password">Password</label>
+                  <Field
+                    name="password"
+                    type="password"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="password" component="div" />
+                </div>
+                <div className={styles.inputs}>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <Field
+                    name="confirmPassword"
+                    type="password"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="confirmPassword" component="div" />
+                </div>
+                <div className={styles.inputs}>
+                  <label htmlFor="acceptTerms">Accept Terms</label>
+                  <Field
+                    name="acceptTerms"
+                    type="checkbox"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="acceptTerms" component="div" />
+                </div>
+                <div className={styles.submitButton}>
+                  <button type="submit">Register</button>
+                </div>
               </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <Field name="email" type="email" />
-                <ErrorMessage name="email" component="div" />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <Field name="password" type="password" />
-                <ErrorMessage name="password" component="div" />
-              </div>
-              <div>
-                <label htmlFor="conPassword">Confirm Password</label>
-                <Field name="conPassword" type="password" />
-                <ErrorMessage name="conPassword" component="div" />
-              </div>
-              <div>
-                <label htmlFor="acceptTerms">Accept Terms</label>
-                <Field name="acceptTerms" type="checkbox" />
-                <ErrorMessage name="acceptTerms" component="div" />
-              </div>
-            </div>
-          )}
-          {message && <span>{message}</span>}
-        </Form>
-      </Formik>
+            )}
+            {loading && <span>Loading please wait</span>}
+            {message && <span>{message}</span>}
+          </Form>
+        </Formik>
+      </div>
     </div>
   )
 }
