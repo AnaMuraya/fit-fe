@@ -27,8 +27,6 @@ const Login = () => {
       AuthService.login(username, password)
         .then(() => {
           navigate('/home')
-          // alert(`Name: ${username}, Pass: ${password}`)
-          // alert('Success')
           window.location.reload()
         })
         .catch((err) => {

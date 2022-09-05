@@ -1,12 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Weather, Dashboard, Login, Register, Profile } from './pages'
+import { Weather, Dashboard, Login, Register, Profile, Home } from './pages'
 
 // import './App.css'
-
-export const Home = () => {
-  return <div data-testid="homeWrapper">Home</div>
-}
 
 export const NotFound = () => {
   return (
