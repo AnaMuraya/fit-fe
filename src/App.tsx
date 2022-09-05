@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Weather, Dashboard, Login, Register } from './pages'
+import { Weather, Dashboard, Login, Register, Profile } from './pages'
 
 // import './App.css'
 
@@ -24,6 +24,7 @@ function App() {
       <Route path="/weather" element={<Weather />} />
       <Route path="/signin" element={<Login />} />
       <Route path="/signup" element={<Register />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
     // </div>
