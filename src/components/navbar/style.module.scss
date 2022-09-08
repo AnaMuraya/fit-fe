@@ -1,0 +1,27 @@
+.wrapper {
+  background: rgb(0, 255, 208);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+
+  .logoWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+  }
+    .list {
+      color: black;
+      font-size: 20px;
+    }
+
+  .options {
+    width: 50%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
