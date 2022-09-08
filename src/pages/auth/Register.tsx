@@ -5,7 +5,7 @@ import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const [message, setMessage] = useState<string>('')
@@ -65,14 +65,14 @@ const Register = () => {
           setMessage(response.data.message)
           setSuccessful(true)
           navigate('/signin')
-          window.location.reload()
+          // window.location.reload()
         })
         .catch((err) => {
           const errorMessage =
             (err.response && err.response.data && err.response.data.message) ||
             err.message ||
             err.toString()
-          setLoading(true)
+          setLoading(false)
           setMessage(errorMessage)
           setSuccessful(false)
         })
@@ -137,10 +137,16 @@ const Register = () => {
                 <div className={styles.submitButton}>
                   <button type="submit">Register</button>
                 </div>
+                {/* should be in colomn style */}
+                <div>
+                  <span>
+                    Already have an account, <Link to="/signin">Signin</Link>
+                  </span>
+                  {loading && <span>Loading please wait</span>}
+                  {message && <span>{message}</span>}
+                </div>
               </div>
             )}
-            {loading && <span>Loading please wait</span>}
-            {message && <span>{message}</span>}
           </Form>
         </Formik>
       </div>
