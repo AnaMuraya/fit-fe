@@ -27,7 +27,7 @@ const Login = () => {
       AuthService.login(username, password)
         .then(() => {
           navigate('/home')
-          window.location.reload()
+          // window.location.reload()
         })
         .catch((err) => {
           const errorMessage =

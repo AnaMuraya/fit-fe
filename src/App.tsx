@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, Link } from 'react-router-dom'
 
 import {
   Weather,
@@ -31,6 +31,14 @@ export const NotFound = () => {
   )
 }
 
+const Logout = () => {
+  return (
+    <div>
+      You have been logged out <Link to="/signin">Do you want to log in</Link>{' '}
+    </div>
+  )
+}
+
 function App() {
   return (
     <Routes>
@@ -39,12 +47,13 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/weather" element={<Weather />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<AdminBoard />} />
-        <Route path="/user" element={<UserBoard/>} />
+        <Route path="/user" element={<UserBoard />} />
       </Route>
+      <Route path="/signin" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
+      <Route path="/logout" element={<Logout />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

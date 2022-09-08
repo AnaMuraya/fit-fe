@@ -65,6 +65,7 @@ const Register = () => {
           setMessage(response.data.message)
           setSuccessful(true)
           navigate('/signin')
+          window.location.reload()
         })
         .catch((err) => {
           const errorMessage =
