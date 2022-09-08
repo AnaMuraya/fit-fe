@@ -14,22 +14,18 @@ type Iuser = {
 }
 
 const Navbar = () => {
-  const [currentUser, setCurrentUser] = useState<Iuser | undefined>(undefined)
   const [showAdmin, setShowAdmin] = useState<boolean>(false)
   const [showUser, setShowUser] = useState<boolean>(false)
-  const [isInitialRender, setIsInitialRender] = useState<boolean>(true)
-  const user = AuthService.getCurrentUser()
+  const user: Iuser = AuthService.getCurrentUser()
   // Look into isInitialRender
   useEffect(() => {
-    if (isInitialRender) {
-      user != null && setCurrentUser(user)
-      setIsInitialRender(false)
-      if (currentUser) {
-        setShowAdmin(currentUser?.roles.includes('ROLE_ADMIN'))
-        setShowUser(currentUser?.roles.includes('ROLE_USER'))
+      // user != null && setCurrentUser(user)
+      if (user != null) {
+        setShowAdmin(user?.roles.includes('ROLE_ADMIN'))
+        setShowUser(user?.roles.includes('ROLE_USER'))
       }
     }
-  }, [isInitialRender])
+  , [])
 
   const handleLogout = () => {
     AuthService.logout()
@@ -43,7 +39,7 @@ const Navbar = () => {
         </Link>
       </div>
       <ul className={styles.options}>
-        {currentUser ? (
+        {user && (
           <>
             {showUser && (
               <li>
@@ -65,7 +61,7 @@ const Navbar = () => {
               </li>
             )}
             <li>
-              <Link to="/home">
+              <Link to="/logout">
                 <div>
                   <button
                     className={cn(styles.list)}
@@ -77,20 +73,22 @@ const Navbar = () => {
               </Link>
             </li>
           </>
-        ) : (
-          <>
-            <li>
-              <Link to="/signin">
-                <div className={cn(styles.list)}>Login</div>
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup">
-                <div className={cn(styles.list)}>Signup</div>
-              </Link>
-            </li>
-          </>
-        )}
+        ) 
+        // : (
+        //   <>
+        //     <li>
+        //       <Link to="/signin">
+        //         <div className={cn(styles.list)}>Login</div>
+        //       </Link>
+        //     </li>
+        //     <li>
+        //       <Link to="/signup">
+        //         <div className={cn(styles.list)}>Signup</div>
+        //       </Link>
+        //     </li>
+        //   </>
+        // )
+        }
       </ul>
     </div>
   )
