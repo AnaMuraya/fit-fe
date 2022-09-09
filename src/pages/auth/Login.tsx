@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
       AuthService.login(username, password)
         .then(() => {
           navigate('/home')
-          window.location.reload()
+          // window.location.reload()
         })
         .catch((err) => {
           const errorMessage =
@@ -78,6 +78,9 @@ const Login = () => {
                 </button>
               </div>
               <div>
+                <span>
+                  Don&apos;t have an account, <Link to="/signup">Signup</Link>
+                </span>
                 {loading && <span>Loading please wait</span>}
                 {message && <span>{message}</span>}
               </div>

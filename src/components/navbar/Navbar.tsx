@@ -17,15 +17,12 @@ const Navbar = () => {
   const [showAdmin, setShowAdmin] = useState<boolean>(false)
   const [showUser, setShowUser] = useState<boolean>(false)
   const user: Iuser = AuthService.getCurrentUser()
-  // Look into isInitialRender
   useEffect(() => {
-      // user != null && setCurrentUser(user)
-      if (user != null) {
-        setShowAdmin(user?.roles.includes('ROLE_ADMIN'))
-        setShowUser(user?.roles.includes('ROLE_USER'))
-      }
+    if (user != null) {
+      setShowAdmin(user?.roles.includes('ROLE_ADMIN'))
+      setShowUser(user?.roles.includes('ROLE_USER'))
     }
-  , [])
+  }, [])
 
   const handleLogout = () => {
     AuthService.logout()
@@ -39,7 +36,7 @@ const Navbar = () => {
         </Link>
       </div>
       <ul className={styles.options}>
-        {user && (
+        {user ? (
           <>
             {showUser && (
               <li>
@@ -73,22 +70,20 @@ const Navbar = () => {
               </Link>
             </li>
           </>
-        ) 
-        // : (
-        //   <>
-        //     <li>
-        //       <Link to="/signin">
-        //         <div className={cn(styles.list)}>Login</div>
-        //       </Link>
-        //     </li>
-        //     <li>
-        //       <Link to="/signup">
-        //         <div className={cn(styles.list)}>Signup</div>
-        //       </Link>
-        //     </li>
-        //   </>
-        // )
-        }
+        ) : (
+          <>
+            <li>
+              <Link to="/signin">
+                <div className={cn(styles.list)}>Login</div>
+              </Link>
+            </li>
+            <li>
+              <Link to="/signup">
+                <div className={cn(styles.list)}>Signup</div>
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   )
