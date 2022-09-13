@@ -1,5 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+:root {
+  --font: 'Poppins', sans-serif;
+  --headingFont: 'Lato', sans-serif;
+
+  --borderRadius: 5px;
+  --borderRadiusLg: 10px;
+  --borderRadiusSm: 3px;
+  --borderRadiusXl: 1000px;
+  --lightPeach: peachpuff;
+  --peach: rgb(255, 152, 62);
+  --lightGreen: #0b9673;
+  --darkGreen: #006f6f;
+  --lightGrey: #f5f4f7;
+  --grey: #c4c4c4;
+  --darkGrey: #777777;
+  --white: #ffffff;
+  --red: #ff6a6a;
+  --lightRed: #ff9797;
+  --yellow: #ffc700;
+  --lime: #c6d800;
+  --orange: #ff8a00;
+  --black: #000000;
+}
+
 body {
   height: 100vh;
+  width: 100vw;
+  font-family: var(--font);
 }
 
 * {
@@ -13,6 +41,17 @@ input {
   border: none;
   background: transparent;
 }
+button {
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--peach);
+  padding: 10px 0;
+  font-weight: bold;
+}
 a {
   text-decoration: none;
+}
+h3 {
+  font-size: 20px;
+  // font-family: var(--headingFont);
 }

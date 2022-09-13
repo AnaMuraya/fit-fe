@@ -89,6 +89,10 @@ const Register = () => {
           <Form>
             {!successful && (
               <div className={styles.authForm}>
+                <div className={styles.authMessage}>
+                  <h3>Register</h3>
+                  <p>Hey, Enter your details to get signed up for an account</p>
+                </div>
                 <div className={styles.inputs}>
                   <label htmlFor="username">Username</label>
                   <Field
@@ -140,7 +144,10 @@ const Register = () => {
                 {/* should be in colomn style */}
                 <div>
                   <span>
-                    Already have an account, <Link to="/signin">Signin</Link>
+                    Already have an account?
+                    <Link to="/signin">
+                      <b>Login now</b>
+                    </Link>
                   </span>
                   {loading && <span>Loading please wait</span>}
                   {message && <span>{message}</span>}
