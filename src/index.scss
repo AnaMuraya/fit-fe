@@ -10,24 +10,25 @@
   --borderRadiusXl: 1000px;
   --lightPeach: peachpuff;
   --peach: rgb(255, 152, 62);
-  --lightGreen: #0b9673;
-  --darkGreen: #006f6f;
-  --lightGrey: #f5f4f7;
-  --grey: #c4c4c4;
-  --darkGrey: #777777;
   --white: #ffffff;
-  --red: #ff6a6a;
-  --lightRed: #ff9797;
-  --yellow: #ffc700;
-  --lime: #c6d800;
-  --orange: #ff8a00;
   --black: #000000;
+  --pink: #fcd4b4;
+  --lightBlue: #d6dee6;
+  --blue: #93c4ec;
+  --lightRed: #fec8b5;
+  --red: #f18786;
+  --lightGrey: #e8e6e4;
+  --darkGrey: #9a9a9a;
+  --grey: #d0cbc6;
+  --lightGreen: #bad3c6;
+  --darkGreen: #4d9b73;
 }
 
 body {
   height: 100vh;
   width: 100vw;
   font-family: var(--font);
+  background: var(--grey);
 }
 
 * {
