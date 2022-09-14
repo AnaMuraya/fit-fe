@@ -1,5 +1,11 @@
 .wrapper {
   background: rgb(0, 255, 208);
+}
+.wrapperTwo {
+  background: transparent;
+}
+.wrapper,
+.wrapperTwo {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -12,10 +18,10 @@
     height: 100%;
     width: 20%;
   }
-    .list {
-      color: black;
-      font-size: 20px;
-    }
+  .list {
+    color: black;
+    font-size: 20px;
+  }
 
   .options {
     width: 50%;

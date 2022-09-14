@@ -12,11 +12,22 @@ import {
 } from './pages'
 import { Navbar } from './components'
 
+import AuthService from './services/auth'
+
 import './App.css'
 
+type Iuser = {
+  username: string
+  email: string
+  roles: string[]
+  accessToken: string
+}
+
 const PageLayout = () => {
+  const user: Iuser = AuthService.getCurrentUser()
+
   return (
-    <div className="wrapper">
+    <div className={(user!=null)?'wrapper':'wrapperTwo'}>
       <Navbar />
       <Outlet />
     </div>

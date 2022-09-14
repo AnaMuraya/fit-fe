@@ -29,7 +29,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={user ? styles.wrapper : styles.wrapperTwo}>
       <div className={styles.logoWrapper}>
         <Link to="/">
           <div className={cn(styles.logo, styles.list)}>Navbar</div>
