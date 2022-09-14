@@ -46,48 +46,49 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.authWrapper}>
-        <Formik
-          initialValues={formik.initialValues}
-          validationSchema={formik.validationSchema}
-          onSubmit={formik.handleLogin}
-        >
-          <Form>
-            <div className={styles.authForm}>
-              <div className={styles.inputs}>
-                <label htmlFor="username">Username</label>
-                <Field
-                  name="username"
-                  type="text"
-                  className={styles.formInput}
-                />
-                <ErrorMessage name="username" component="div" />
-              </div>
-              <div className={styles.inputs}>
-                <label htmlFor="password">Password</label>
-                <Field
-                  name="password"
-                  type="password"
-                  className={styles.formInput}
-                />
-                <ErrorMessage name="password" component="div" />
-              </div>
-              <div className={styles.submitButton}>
-                <button type="submit" disabled={loading}>
-                  Login
-                </button>
-              </div>
-              <div>
-                <span>
-                  Don&apos;t have an account, <Link to="/signup">Signup</Link>
-                </span>
-                {loading && <span>Loading please wait</span>}
-                {message && <span>{message}</span>}
-              </div>
+      <Formik
+        initialValues={formik.initialValues}
+        validationSchema={formik.validationSchema}
+        onSubmit={formik.handleLogin}
+      >
+        <Form>
+          <div className={styles.authForm}>
+            <div className={styles.authMessage}>
+              <h3>Login</h3>
+              <p>Hey, Enter your details to get signed in to your account</p>
             </div>
-          </Form>
-        </Formik>
-      </div>
+            <div className={styles.inputs}>
+              <label htmlFor="username">Username</label>
+              <Field name="username" type="text" className={styles.formInput} />
+              <ErrorMessage name="username" component="div" />
+            </div>
+            <div className={styles.inputs}>
+              <label htmlFor="password">Password</label>
+              <Field
+                name="password"
+                type="password"
+                className={styles.formInput}
+              />
+              <ErrorMessage name="password" component="div" />
+            </div>
+            <div className={styles.submitButton}>
+              <button type="submit" disabled={loading}>
+                Sign in
+              </button>
+            </div>
+            <div>
+              <span>
+                Don&apos;t have an account?
+                <Link to="/signup">
+                  <b>Register now</b>
+                </Link>
+              </span>
+              {loading && <span>Loading please wait</span>}
+              {message && <span>{message}</span>}
+            </div>
+          </div>
+        </Form>
+      </Formik>
     </div>
   )
 }
