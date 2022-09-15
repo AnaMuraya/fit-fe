@@ -1,11 +1,12 @@
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import { LoadingOutlined } from '@ant-design/icons'
 
 import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const [message, setMessage] = useState<string>('')
@@ -80,82 +81,86 @@ const Register = () => {
   }
   return (
     <div className={styles.wrapper}>
-      <div className={styles.authWrapper}>
-        <Formik
-          validationSchema={formik.validationSchema}
-          initialValues={formik.initialValues}
-          onSubmit={formik.handleRegister}
-        >
-          <Form>
-            {!successful && (
-              <div className={styles.authForm}>
-                <div className={styles.authMessage}>
-                  <h3>Register</h3>
-                  <p>Hey, Enter your details to get signed up for an account</p>
-                </div>
-                <div className={styles.inputs}>
-                  <label htmlFor="username">Username</label>
-                  <Field
-                    name="username"
-                    type="text"
-                    className={styles.formInput}
-                  />
-                  <ErrorMessage name="username" component="div" />
-                </div>
-                <div className={styles.inputs}>
-                  <label htmlFor="email">Email</label>
-                  <Field
-                    name="email"
-                    type="email"
-                    className={styles.formInput}
-                  />
-                  <ErrorMessage name="email" component="div" />
-                </div>
-                <div className={styles.inputs}>
-                  <label htmlFor="password">Password</label>
-                  <Field
-                    name="password"
-                    type="password"
-                    className={styles.formInput}
-                  />
-                  <ErrorMessage name="password" component="div" />
-                </div>
-                <div className={styles.inputs}>
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  <Field
-                    name="confirmPassword"
-                    type="password"
-                    className={styles.formInput}
-                  />
-                  <ErrorMessage name="confirmPassword" component="div" />
-                </div>
-                <div className={styles.inputs}>
-                  <label htmlFor="acceptTerms">Accept Terms</label>
-                  <Field
-                    name="acceptTerms"
-                    type="checkbox"
-                    className={styles.formInput}
-                  />
-                  <ErrorMessage name="acceptTerms" component="div" />
-                </div>
-                <div className={styles.submitButton}>
-                  <button type="submit">Register</button>
-                </div>
-                {/* should be in colomn style */}
-                <div>
-                  <span>
-                    Already have an account?
-                    <Link to="/signin">
-                      <b>Login now</b>
-                    </Link>
-                  </span>
-                  {loading && <span>Loading please wait</span>}
-                  {message && <span>{message}</span>}
-                </div>
+      <Formik
+        validationSchema={formik.validationSchema}
+        initialValues={formik.initialValues}
+        onSubmit={formik.handleRegister}
+      >
+        <Form>
+          {!successful && (
+            <div className={styles.authForm}>
+              <div className={styles.authMessage}>
+                <h3>Register</h3>
+                <p>Hey, Enter your details to get signed up for an account</p>
               </div>
-            )}
-          </Form>
-        </Formik>
+              <div className={styles.inputs}>
+                <label htmlFor="username">Username</label>
+                <Field
+                  name="username"
+                  type="text"
+                  className={styles.formInput}
+                />
+                <ErrorMessage name="username" component="div" />
+              </div>
+              <div className={styles.inputs}>
+                <label htmlFor="email">Email</label>
+                <Field name="email" type="email" className={styles.formInput} />
+                <ErrorMessage name="email" component="div" />
+              </div>
+              <div className={styles.inputs}>
+                <label htmlFor="password">Password</label>
+                <Field
+                  name="password"
+                  type="password"
+                  className={styles.formInput}
+                />
+                <ErrorMessage name="password" component="div" />
+              </div>
+              <div className={styles.inputs}>
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <Field
+                  name="confirmPassword"
+                  type="password"
+                  className={styles.formInput}
+                />
+                <ErrorMessage name="confirmPassword" component="div" />
+              </div>
+              <div className={styles.inputs}>
+                <label htmlFor="acceptTerms">Accept Terms</label>
+                <Field
+                  name="acceptTerms"
+                  type="checkbox"
+                  className={styles.formInput}
+                />
+                <ErrorMessage name="acceptTerms" component="div" />
+              </div>
+              <div className={styles.submitButton}>
+                <button type="submit">Register</button>
+              </div>
+              {/* should be in colomn style */}
+              <div className={styles.state}>
+                <span>
+                  Already have an account?
+                  <Link to="/signin">
+                    <b> Login now</b>
+                  </Link>
+                </span>
+                {loading && (
+                  <span>
+                    <LoadingOutlined className={styles.loading} />
+                  </span>
+                )}
+                {message && <span className={styles.error}>{message}!</span>}
+              </div>
+            </div>
+          )}
+        </Form>
+      </Formik>
+      <div className={styles.rights}>
+        <p>
+          Copyright&copy; <Link to="/signup">A.M </Link> 2022 |{' '}
+          <Link to="/signup">Privacy Policy</Link>
+        </p>
       </div>
     </div>
   )

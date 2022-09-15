@@ -1,11 +1,12 @@
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import { LoadingOutlined } from '@ant-design/icons'
 
 import AuthService from '../../services/auth'
 
 import styles from './style.module.scss'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 
 const Login = () => {
   const [message, setMessage] = useState<string>('')
@@ -76,19 +77,29 @@ const Login = () => {
                 Sign in
               </button>
             </div>
-            <div>
+            <div className={styles.state}>
               <span>
                 Don&apos;t have an account?
                 <Link to="/signup">
-                  <b>Register now</b>
+                  <b> Register now</b>
                 </Link>
               </span>
-              {loading && <span>Loading please wait</span>}
-              {message && <span>{message}</span>}
+              {loading && (
+                <span>
+                  <LoadingOutlined className={styles.loading} />
+                </span>
+              )}
+              {message && <span className={styles.error}>{message}!</span>}
             </div>
           </div>
         </Form>
       </Formik>
+      <div className={styles.rights}>
+        <p>
+          Copyright&copy; <Link to="/signin">A.M </Link> 2022 |{' '}
+          <Link to="/signin">Privacy Policy</Link>
+        </p>
+      </div>
     </div>
   )
 }

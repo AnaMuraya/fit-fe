@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { NotFound } from './App'
 
 // eslint-disable-next-line no-undef
-test('renders home', () => {
+test('renders notfound', () => {
   render(<NotFound />)
   // eslint-disable-next-line no-undef
   expect(screen.getByTestId('wrapper')).toBeInTheDocument()
