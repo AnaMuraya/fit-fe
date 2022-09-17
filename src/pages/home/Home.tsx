@@ -1,6 +1,6 @@
 import userService from '../../services/user'
 
-// import styles from './style.module.scss'
+import styles from './style.module.scss'
 import { useState } from 'react'
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
     })
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       Home <div>{content}</div>
     </div>
   )
