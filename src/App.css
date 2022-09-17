@@ -1,12 +1,20 @@
 .App {
   text-align: center;
 }
+
+/* @keyframes bgImage {
+  50% {
+    background-size: 100% 450px;
+  }
+}
 .wrapperTwo {
   background-image: url('./elements/images/image1.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+  /* background-size: 100% 427px; */
+  /* background-size: 100% 61%;
+  background-position: top; */
+  /* animation: bgImage 5s infinite; */
+/* }  */
 
 .wrapper {
   background: yellow;
